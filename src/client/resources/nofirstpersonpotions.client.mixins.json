@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "dbrighthd.nofirstpersonpotions.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"LivingEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

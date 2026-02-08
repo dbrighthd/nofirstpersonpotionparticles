@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.nofirstpersonpotions.title": "No First Person Potion Particles Mod Settings",
+  "text.autoconfig.nofirstpersonpotions.option.modEnabled": "Mod Enabled",
+  "text.autoconfig.nofirstpersonpotions.option.modEnabled.@Tooltip": "Toggle if mod is enabled",
+  "text.autoconfig.nofirstpersonpotions.option.showParticesInThirdPerson": "Show Particles in Third Person",
+  "text.autoconfig.nofirstpersonpotions.option.showParticesInThirdPerson.@Tooltip": "Toggle if potion particles should show in third person"
+}
