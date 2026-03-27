@@ -6,14 +6,22 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+
+import static dbrighthd.nofirstpersonpotions.config.ConfigManager.getConfig;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
-	@Redirect(
+	@Shadow
+	public abstract @Nullable LivingEntity asLivingEntity();
+
+	@SuppressWarnings("ConstantValue") // the compiler doesnt know that options can change w/ config
+    @Redirect(
 			method = "tickEffects",
 			at = @At(
 					value = "INVOKE",
@@ -25,8 +33,8 @@ public abstract class LivingEntityMixin {
 		Minecraft mc = Minecraft.getInstance();
 		Entity camera = mc.getCameraEntity();
 
-		if ((NoFirstPersonPotionsClient.getConfig().modEnabled) && camera != null && (Object)this == camera) {
-			if(Minecraft.getInstance().options.getCameraType().isFirstPerson() || !NoFirstPersonPotionsClient.getConfig().showParticesInThirdPerson)
+		if ((getConfig().modEnabled) && camera != null && this.asLivingEntity() == camera) {
+			if(Minecraft.getInstance().options.getCameraType().isFirstPerson() || !getConfig().showParticesInThirdPerson)
 			{
 				return; // don't spawn self effect particles
 			}
