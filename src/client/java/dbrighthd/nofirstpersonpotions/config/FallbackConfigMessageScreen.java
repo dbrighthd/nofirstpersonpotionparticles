@@ -1,6 +1,6 @@
 package dbrighthd.nofirstpersonpotions.config;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -39,15 +39,15 @@ public class FallbackConfigMessageScreen extends Screen {
 
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphicsExtractor, int mouseX, int mouseY, float partialTick) {
 
         int centerX = this.width / 2;
         int centerY = this.height / 2;
 
         int top = centerY - PANEL_HEIGHT / 2;
 
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        guiGraphics.drawCenteredString(this.font, "The Cloth Config mod is required to edit No First Person Particles settings!", centerX, top+14, 0xFFFFFFFF);
+        super.extractRenderState(guiGraphicsExtractor, mouseX, mouseY, partialTick);
+        guiGraphicsExtractor.centeredText(this.font, "The Cloth Config mod is required to edit No First Person Particles settings!", centerX, top+14, 0xFFFFFFFF);
 
     }
 
